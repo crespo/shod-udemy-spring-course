@@ -13,8 +13,8 @@ public class FunRestController {
         return "Hello World!";
     }
 
-    @GetMapping("/heya")
-    public String sayHey() {
-        return "Hey!!!!!!";
+    @GetMapping("/easteregg")
+    public String easterEgg() {
+        return "Oh! You found me.";
     }
 }
