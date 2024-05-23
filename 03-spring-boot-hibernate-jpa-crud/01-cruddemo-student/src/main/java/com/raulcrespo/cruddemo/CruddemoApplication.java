@@ -21,10 +21,44 @@ public class CruddemoApplication {
 
 		return runner -> {
 			// createStudent(studentDAO);
-			// createMultipleStudents(studentDAO);
+			createMultipleStudents(studentDAO);
 			// readStudent(studentDAO);
-			getAllStudents(studentDAO);
+			// getAllStudents(studentDAO);
+			// getStudentsByLastName(studentDAO);
+			// updateStudent(studentDAO);
+			// deleteStudent(studentDAO);
+			// deleteAllStudents(studentDAO);
 		};
+	}
+
+	private void deleteAllStudents(StudentDAO studentDAO) {
+		System.out.println("'" + studentDAO.deleteAll() + "' students were deleted.");
+	}
+
+	private void deleteStudent(StudentDAO studentDAO) {
+		int studentId = 3;
+		System.out.println("Deleting student with id: " + studentId);
+		studentDAO.deleteById(studentId);
+	}
+
+	private void updateStudent(StudentDAO studentDAO) {
+		int studentId = 1;
+		System.out.println("Getting student with id: " + studentId);
+		Student student = studentDAO.findById(studentId);
+
+		System.out.println("Updating student...");
+		student.setFirstName("Raul");
+
+		studentDAO.update(student);
+		System.out.println("Updated student: " + student);
+	}
+
+	private void getStudentsByLastName(StudentDAO studentDAO) {
+		List<Student> students = studentDAO.findByLastName("Crespo");
+
+		for(Student s : students) {
+			System.out.println(s);
+		}
 	}
 
 	private void getAllStudents(StudentDAO studentDAO) {
@@ -67,7 +101,7 @@ public class CruddemoApplication {
 
 	private void createStudent(StudentDAO studentDAO) {
 		System.out.println("Creating new student object...");
-		Student newStudent = new Student("Raul", "Crespo", "oi@raulcrespo.com");
+		Student newStudent = new Student("Ralph", "Curly", "hi@ralphcurly.com");
 
 		System.out.println("Saving new student...");
 		studentDAO.save(newStudent);
